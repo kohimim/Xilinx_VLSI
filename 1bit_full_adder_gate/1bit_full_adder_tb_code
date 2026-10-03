@@ -1,0 +1,181 @@
+library IEEE;
+
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+
+entity Full_adder_gate_tb is
+
+end Full_adder_gate_tb;
+
+
+
+architecture Behavioral of Full_adder_gate_tb is
+
+
+
+    component Full_adder_gate
+
+        Port (
+
+            A     : in  STD_LOGIC;
+
+            B     : in  STD_LOGIC;
+
+            Cin   : in  STD_LOGIC;
+
+            SUM   : out STD_LOGIC;
+
+            CARRY : out STD_LOGIC
+
+        );
+
+    end component;
+
+
+
+    signal A     : STD_LOGIC := '0';
+
+    signal B     : STD_LOGIC := '0';
+
+    signal Cin   : STD_LOGIC := '0';
+
+    signal SUM   : STD_LOGIC;
+
+    signal CARRY : STD_LOGIC;
+
+
+
+begin
+
+
+
+    UUT : Full_adder_gate
+
+        port map (
+
+            A     => A,
+
+            B     => B,
+
+            Cin   => Cin,
+
+            SUM   => SUM,
+
+            CARRY => CARRY
+
+        );
+
+
+
+    stimulus : process
+
+    begin
+
+
+
+        -- 000
+
+        A <= '0';
+
+        B <= '0';
+
+        Cin <= '0';
+
+        wait for 10 ns;
+
+
+
+        -- 001
+
+        A <= '0';
+
+        B <= '0';
+
+        Cin <= '1';
+
+        wait for 10 ns;
+
+
+
+        -- 010
+
+        A <= '0';
+
+        B <= '1';
+
+        Cin <= '0';
+
+        wait for 10 ns;
+
+
+
+        -- 011
+
+        A <= '0';
+
+        B <= '1';
+
+        Cin <= '1';
+
+        wait for 10 ns;
+
+
+
+        -- 100
+
+        A <= '1';
+
+        B <= '0';
+
+        Cin <= '0';
+
+        wait for 10 ns;
+
+
+
+        -- 101
+
+        A <= '1';
+
+        B <= '0';
+
+        Cin <= '1';
+
+        wait for 10 ns;
+
+
+
+        -- 110
+
+        A <= '1';
+
+        B <= '1';
+
+        Cin <= '0';
+
+        wait for 10 ns;
+
+
+
+        -- 111
+
+        A <= '1';
+
+        B <= '1';
+
+        Cin <= '1';
+
+        wait for 10 ns;
+
+
+
+        wait;
+
+
+
+    end process;
+
+
+
+end Behavioral;
