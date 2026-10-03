@@ -1,0 +1,129 @@
+library IEEE;
+
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+
+entity Full_adder_gate is
+
+    Port (
+
+        A     : in  STD_LOGIC;
+
+        B     : in  STD_LOGIC;
+
+        Cin   : in  STD_LOGIC;
+
+        SUM   : out STD_LOGIC;
+
+        CARRY : out STD_LOGIC
+
+    );
+
+end Full_adder_gate;
+
+
+
+architecture Structural of Full_adder_gate is
+
+
+
+    component Half_adder_gate
+
+        Port (
+
+            A     : in  STD_LOGIC;
+
+            B     : in  STD_LOGIC;
+
+            SUM   : out STD_LOGIC;
+
+            CARRY : out STD_LOGIC
+
+        );
+
+    end component;
+
+
+
+    component OR_gate
+
+        Port (
+
+            A : in  STD_LOGIC;
+
+            B : in  STD_LOGIC;
+
+            Y : out STD_LOGIC
+
+        );
+
+    end component;
+
+
+
+    signal SUM1   : STD_LOGIC;
+
+    signal CARRY1 : STD_LOGIC;
+
+    signal CARRY2 : STD_LOGIC;
+
+
+
+begin
+
+
+
+    -- First Half Adder
+
+    HA1 : Half_adder_gate
+
+        port map (
+
+            A     => A,
+
+            B     => B,
+
+            SUM   => SUM1,
+
+            CARRY => CARRY1
+
+        );
+
+
+
+    -- Second Half Adder
+
+    HA2 : Half_adder_gate
+
+        port map (
+
+            A     => SUM1,
+
+            B     => Cin,
+
+            SUM   => SUM,
+
+            CARRY => CARRY2
+
+        );
+
+
+
+    -- OR gate for final Carry
+
+    OR1 : OR_gate
+
+        port map (
+
+            A => CARRY1,
+
+            B => CARRY2,
+
+            Y => CARRY
+
+        );
+
+
+
+end Structural;
